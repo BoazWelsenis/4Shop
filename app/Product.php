@@ -17,4 +17,9 @@ class Product extends Model
         $final_price = $value - $discount;                  // Haal korting van de prijs af
         return number_format($final_price, 2);              // Geef de uiteindelijke prijs met max. 2 decimalen terug
     }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
 }
