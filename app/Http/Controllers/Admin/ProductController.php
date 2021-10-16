@@ -104,14 +104,17 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        $categories = Category::all();
         return view('admin.products.edit')
-                ->with(compact('product'));
+                ->with(compact('product'))
+                ->with('categories', $categories);
     }
 
     public function update(Request $request, Product $product)
     {
         $this->validate(request(), [
             'title' => 'required',
+            'category' => 'required',
             'price' => 'required|numeric',
             'active' => 'required|boolean',
             'leiding' => 'required|boolean',
@@ -120,6 +123,7 @@ class ProductController extends Controller
         ]);
 
         $product->title = $request->title; 
+        $product->category_id = $request->category;
         $product->price = $request->price;
         $product->active = $request->active;
         $product->leiding = $request->leiding;
