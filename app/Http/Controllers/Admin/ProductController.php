@@ -7,6 +7,9 @@ use App\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+//Importeer Category Model
+use App\Category;
+
 class ProductController extends Controller
 {
 
@@ -19,13 +22,16 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        return view('admin.products.create');
+        $categories = Category::all();
+        return view('admin.products.create')
+            ->with('categories', $categories);
     }
 
     public function store(Request $request)
     {
         $this->validate(request(), [
             'title' => 'required',
+            'category' => 'required',
             'price' => 'required|numeric',
             'active' => 'required|boolean',
             'leiding' => 'required|boolean',
@@ -35,6 +41,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->title = $request->title; 
+        $product->category_id = $request->category;
         $product->price = $request->price;
         $product->active = $request->active;
         $product->leiding = $request->leiding;
