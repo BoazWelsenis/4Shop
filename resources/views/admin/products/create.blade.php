@@ -27,7 +27,16 @@
 		        <div class="input-group-prepend">
 		        	<div class="input-group-text">&euro;</div>
 		        </div>
-				<input type="number" min="0" id="price" name="price" class="form-control" value="{{ old('price') }}">
+				<input type="number" min="0" step="any" id="price" name="price" class="form-control" value="{{ old('price') }}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="discount">Korting</label>
+			<div class="input-group mb-2">
+		        <div class="input-group-prepend">
+		        	<div class="input-group-text">&percnt;</div>
+		        </div>
+				<input type="number" min="0" value="0" step="any" id="discount" name="discount" class="form-control">
 			</div>
 		</div>
 		<div class="form-group my-4">
@@ -65,3 +74,5 @@
 </div>
 
 @endsection
+
+<!-- Give default value to input (discount): https://stackoverflow.com/questions/34924709/for-input-type-number-how-to-set-default-value-to-0/34926093 -->

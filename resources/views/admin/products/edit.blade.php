@@ -26,7 +26,17 @@
 		        <div class="input-group-prepend">
 		        	<div class="input-group-text">&euro;</div>
 		        </div>
-				<input type="number" min="0" id="price" name="price" class="form-control" value="{{ old('price', $product->price) }}">
+				<input type="number" min="0" step="any" id="price" name="price" class="form-control" value="{{  $product->getOriginal('price') }}">
+				<!-- <input type="number" min="0" id="price" name="price" class="form-control" value="{{ old('price', $product->price) }}"> -->
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="discount">Korting</label>
+			<div class="input-group mb-2">
+		        <div class="input-group-prepend">
+		        	<div class="input-group-text">&percnt;</div>
+		        </div>
+				<input type="number" min="0" step="any" id="discount" name="discount" class="form-control" value="{{ old('discount', $product->discount) }}">
 			</div>
 		</div>
 		<div class="form-group my-4">
@@ -70,3 +80,6 @@
 </div>
 
 @endsection
+
+
+<!-- Edit Price / Discount with decimal numbers: https://stackoverflow.com/questions/48892570/please-enter-a-valid-value-the-two-nearest-valid-value-is -->
